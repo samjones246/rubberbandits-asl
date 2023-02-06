@@ -47,7 +47,7 @@ split {
     var finalScene = current.scene == vars.FinalSceneName;
     if (!old.rewards && current.rewards) {
         var chapterSplit = settings["split_chapter"] && vars.ChapterEndScenes.Contains(current.scene);
-        if (settings["split_stage"] || settings["split_chapter"] || finalScene) {
+        if (settings["split_stage"] || chapterSplit || finalScene) {
             return true;
         }
     }
