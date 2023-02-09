@@ -19,8 +19,9 @@ startup {
 
 init {
     old.scene = "";
+    old.rewards = false;
     vars.Helper.TryLoad = (Func<dynamic, bool>)(mono => {
-        vars.Helper["rewards"] = mono.Make<bool>("RewardsScreen", "RewardScreenActive");
+        vars.Helper["rewards"] = mono["RewardsScreen"].Make<bool>("RewardScreenActive");
         return true;
     });
 }
@@ -30,6 +31,8 @@ start {
 }
 
 update {
+    current.rewards = vars.Helper["rewards"].Current;
+    
     if (!string.IsNullOrEmpty(vars.Helper.Scenes.Active.Name)) {
         current.scene = vars.Helper.Scenes.Active.Name;
     }
@@ -39,7 +42,7 @@ update {
     }
 
     if (current.scene != old.scene) {
-        vars.Log(current.scene);
+        vars.Log(current.scene); 
     }
 }
 
